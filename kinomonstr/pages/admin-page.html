@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Рейтинг фільмів</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<style>
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 3;
+  }
+  
+  .modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 40%;
+  }
+  
+  .close {
+	color: #170f0f;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+  }
+.center-text {
+	text-align: center;
+}
+</style>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <nav role="navigation" class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header header">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h1><a href="index.html">КіноМонстр</a></h1>
+                  <p>Кіно - наша пристрасть!</p>
+                </div>
+              </div>
+            </div>
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+              <span class="sr-only">Переключення навігації</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div id="navbarCollapse" class="collapse navbar-collapse navbar-right">
+            <ul id = "ul-nav-id" class="nav nav-pills">
+              <li> <a href="index.html">Головна</a> </li>
+              <li> <a href="films.html">Фільми</a> </li> 
+              <li> <a href="raiting.html">Рейтинг фільмів</a> </li>
+              <li id="li-contacts_href"> <a href="contact.html">Контакти</a> </li>
+              <script src="isAdmin.js"></script>
+
+              <script src="login-button.js"></script>
+              <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                          <div class="container">
+                            <div class="row">
+                            <div class="col-md-6">
+                           
+                            <div class="tab" role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Вхід</a></li>
+                            <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Реєстрація</a></li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content tabs">
+                            <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                            <form class="form-horizontal">
+                              <div class="form-group">
+                                <label for="sing-in-login">Логін</label>
+                                <input type="text" class="form-control" id="sing-in-login" placeholder="Логін" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="sing-in-password">Пароль</label>
+                                <input type="password" class="form-control input-lg" placeholder="Пароль" id="sing-in-password">
+                              </div>
+                            <div class="form-group">
+                            <div class="main-checkbox">
+                            <input value="None" id="checkbox1" name="check" type="checkbox">
+                            <label for="checkbox1"></label>
+                            </div>
+                            <span class="text">Keep me Signed in</span>
+                            </div>
+                            <div class="form-group">
+                              <button type="button" class="btn btn-warning pull-right" id="entrance-btn">Увійти</button>
+                            </div>
+                            <div class="form-group forgot-pass">
+                            <button type="submit" class="btn btn-default">forgot password</button>
+                            </div>
+                            </form>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Section2">
+                            <form class="form-horizontal">
+                              <div class="form-group">
+                                <label for="firstName">Ім'я</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="Ім'я" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="lastName">Прізвище</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="Прізвище" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="email">Електронна пошта</label>
+                                <input type="email" class="form-control" id="email" placeholder="Електронна пошта" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="phone">Телефон</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="Телефон" required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="username">Ім'я користувача</label>
+                                  <input type="text" class="form-control" id="username" placeholder="Ім'я користувача" required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="password">Пароль</label>
+                                  <input type="password" class="form-control" id="password" placeholder="Пароль" required>
+                              </div>
+                            <div class="form-group">
+                            <button type="button" class="btn btn-primary" id="registration-btn">Зареєструватися</button>
+                            <script src="registrationForm.js"></script>
+                            </div>
+                            </form>
+                            </div>
+                            </div>
+                            </div>
+                           
+                           </div><!-- /.col-md-offset-3 col-md-6 -->
+                           </div><!-- /.row -->
+                           </div><!-- /.container -->
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-sm-push-3" id="main-products-container">
+            Оберіть операцію:
+            <select id="operation" class="form-select" onchange="ChangedSelection()">
+              <option> Додати фільм </option>
+              <option> Видалити фільм </option>
+              <option> Додати сеанс </option>
+              <option> Видалити сеанс </option>
+              <option> Додати жанр </option>
+              <option> Видалити жанр </option>
+            </select>
+
+          <div id="myModalConfirm" class="modal">
+            <div class="modal-content center-text">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <h3 id="question_confirmation">Ви впевнені, що хочете видалити фільм?</h3>
+              <button id="sure" class="btm btn-lg btn-warning custom-mr-1">Так</button>
+              <button id="not_sure" class="btm btn-lg btn-warning custom-ml-1" onclick="closeModal()">Ні</button>
+            </div>
+          </div>
+          <div id = "container-for-forms" class="form-group"></div>
+          <script src="admin-page.js"></script>
+          <div class="margin-8"></div>
+        </div>
+        <div class="col-sm-3 col-sm-pull-9">
+
+          <div class="panel panel-info hidden-xs">
+            <div class="panel-heading">
+              <div class="sidebar-header"></div>
+            </div>
+            <div class="panel-body">
+              <form role="search">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input type="search" class="form-control input-lg" placeholder="Ваш запит">
+                    <div class="input-group-btn">
+                      <button class="btn btn-default btn-lg" type="submit"><i
+                          class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <div class="sidebar-header">Рейтинг фільмів</div>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group" id = "panelListRatings"></ul>
+            </div>
+           <script src="ratingFillBar.js"></script>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <footer>
+    <div class="container">
+      <p class="text-center"> <a>AnnaBocharova</a> </p>
+    </div>
+  </footer>
+  <!-- Підключаємо jQuery та Bootstrap JS через CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>
