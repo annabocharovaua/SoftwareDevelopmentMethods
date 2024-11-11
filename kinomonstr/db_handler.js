@@ -20,5 +20,6 @@ function ConnectToDB(config) {
     });
     return connection;
 }
+
 var connection = ConnectToDB(config);
 module.exports = connection; 

@@ -1,3 +1,16 @@
+/**
+ * Creates a new HTML element with specified properties and appends it to a parent element.
+ * 
+ * @function CreateElement
+ * @param {string} nameElement - The name of the element to create (e.g., "div", "span", "select").
+ * @param {string} idElement - The id to assign to the created element.
+ * @param {string} innerText - The inner text content for the created element.
+ * @param {string} parentId - The id of the parent element where the new element will be appended. If 'body', it appends to the body.
+ * @returns {HTMLElement} - The created and appended HTML element.
+ * 
+ * @example
+ * CreateElement("div", "myDiv", "Hello, World!", "container");
+ */
 function CreateElement(nameElement, idElement, innerText, parentId) {
     let element = document.createElement(nameElement);
     element.id = idElement;
@@ -9,10 +22,26 @@ function CreateElement(nameElement, idElement, innerText, parentId) {
     return element;
 }
 
+/**
+ * Resets the container with forms by clearing its inner HTML content.
+ * 
+ * @function ResetContainerForForms
+ * @description Clears all the content inside the element with id "container-for-forms".
+ */
 function ResetContainerForForms() {
     document.getElementById("container-for-forms").innerHTML = "";
 }
 
+/**
+ * Adds a dropdown field for genres to the "container-for-genres" element.
+ * If a genre is the first, it uses specific styles, otherwise uses default styling.
+ * 
+ * @function AddFieldGenre
+ * @param {number} number - The number to differentiate between multiple genre fields.
+ * @description Sends a GET request to fetch genres from the database and populates the dropdown options.
+ * @example
+ * AddFieldGenre(1);
+ */
 function AddFieldGenre(number) {
     if (number != 1)
         CreateElement("select", "genreName" + number, "", "container-for-genres").classList.add("custom-mt-3", "form-select");
@@ -34,11 +63,26 @@ function AddFieldGenre(number) {
     });
 }
 
+/**
+ * Deletes a genre dropdown field by removing the corresponding select element.
+ * 
+ * @function DeleteFieldGenre
+ * @param {number} number - The number used to identify the genre field.
+ * @description Removes the select element with id "genreName<number>" from the DOM.
+ */
 function DeleteFieldGenre(number) {
     document.getElementById("genreName"+number).remove();
 }
 
 let number_of_genres = 1;
+/**
+ * Adds a new film form with input fields for film name, genres, director, duration, poster, trailer, and description.
+ * 
+ * @function AddNewFilm
+ * @description Creates a form for adding a new film, including dynamically adding/removing genre fields. 
+ * The form collects data like film name, director, duration, poster, trailer, description, and genres.
+ * On submission, the data is sent to the server via an AJAX POST request.
+ */
 function AddNewFilm() {
     CreateElement("form", "formAddFilm", "", "container-for-forms").classList.add("custom-mt-3");
     CreateElement("label", "lablefilmName", "Введіть назву фільму:", "formAddFilm").classList.add("form-label");
@@ -157,6 +201,13 @@ function AddNewFilm() {
     }
 }
 
+/**
+ * Adds a new session form with input fields for selecting a film, start date, start time, and ticket price.
+ * 
+ * @function AddNewSession
+ * @description Creates a form for adding a new session, allowing the user to select a film from a dropdown, 
+ * choose a start date and time, and set a ticket price. The form data is sent to the server via an AJAX POST request.
+ */
 function AddNewSession() {
     CreateElement("form", "formAddSession", "", "container-for-forms").classList.add("custom-mt-3");
     CreateElement("label", "labelSelectFilm", "Оберіть фільм:", "formAddSession").classList.add("form-label");
@@ -239,6 +290,13 @@ function AddNewSession() {
     }
 }
 
+/**
+ * Adds a new genre selection field to the genre section of the film form.
+ * 
+ * @function AddFieldGenre
+ * @param {number} number - The number of the genre field being added.
+ * @description Creates a new genre input field with a unique id based on the provided number and appends it to the form.
+ */
 function AddNewGenre() {
     CreateElement("form", "formAddGenre", "", "container-for-forms").classList.add("custom-mt-3");
     CreateElement("label", "lableGenreName", "Введіть назву жанру:", "formAddGenre").classList.add("form-label");
@@ -281,6 +339,16 @@ function AddNewGenre() {
     }
 }
 var deletedFilm ='';
+/**
+ * Deletes a selected film from the database.
+ * 
+ * @function DeleteFilm
+ * @description 
+ * This function creates a form that allows the user to select a film for deletion. 
+ * It retrieves the list of films from the database, displays them in a dropdown menu, 
+ * and prompts the user to confirm the deletion. Upon confirmation, the selected film 
+ * is deleted from the database and the form is reset.
+ */
 function DeleteFilm() {
     CreateElement("form", "formDeleteFilm", "", "container-for-forms").classList.add("custom-mt-3");
     CreateElement("label", "labelformDeleteFilm", "Оберіть фільм для видалення:", "formDeleteFilm").classList.add("form-label");
@@ -340,6 +408,16 @@ function DeleteFilm() {
         }
 }
 var deletedGenre ='';
+/**
+ * Deletes a selected genre from the database.
+ * 
+ * @function DeleteGenre
+ * @description 
+ * This function creates a form that allows the user to select a genre for deletion. 
+ * It retrieves the list of genres from the database, displays them in a dropdown menu, 
+ * and prompts the user to confirm the deletion. Upon confirmation, the selected genre 
+ * is deleted from the database and the form is reset.
+ */
 function DeleteGenre() {
     CreateElement("form", "formDeleteGenre", "", "container-for-forms").classList.add("custom-mt-3");
     CreateElement("label", "labelformDeleteGenre", "Оберіть жанр для видалення:", "formDeleteGenre").classList.add("form-label");
@@ -398,6 +476,16 @@ function DeleteGenre() {
 }
 
 var deletedSession ='';
+/**
+ * Deletes a selected session from the database.
+ * 
+ * @function DeleteSession
+ * @description 
+ * This function creates a form that allows the user to select a session for deletion. 
+ * It retrieves the list of sessions from the database, displays them in a dropdown menu, 
+ * and prompts the user to confirm the deletion. Upon confirmation, the selected session 
+ * is deleted from the database and the form is reset.
+ */
 function DeleteSession() {
     CreateElement("form", "formDeleteSession", "", "container-for-forms").classList.add("custom-mt-3");
     CreateElement("label", "labelformDeleteSessione", "Оберіть сеанс для видалення:", "formDeleteSession").classList.add("form-label");
@@ -456,17 +544,42 @@ function DeleteSession() {
             closeModal();
             ResetContainerForForms();
             DeleteSession();
-            //location.reload();
         }
 }
 
+/**
+ * Displays the modal for confirmation.
+ * 
+ * @function openModal
+ * @description 
+ * This function sets the display style of the modal with the id 'myModalConfirm' to 'block', 
+ * making it visible on the screen.
+ */
 function openModal() {
     document.getElementById('myModalConfirm').style.display = 'block';
 }
 
+/**
+ * Closes the modal for confirmation.
+ * 
+ * @function closeModal
+ * @description 
+ * This function sets the display style of the modal with the id 'myModalConfirm' to 'none', 
+ * hiding it from the screen.
+ */
 function closeModal() {
     document.getElementById('myModalConfirm').style.display = 'none';
 }
+
+/**
+ * Handles the selection change and calls the corresponding function based on the selected operation.
+ * 
+ * @function ChangedSelection
+ * @description 
+ * This function checks the value of the selection input with the id 'operation' and performs different actions
+ * based on the selected operation. It resets the form container and then calls the relevant function for adding 
+ * or deleting a film, session, or genre, depending on the selected operation.
+ */
 function ChangedSelection() {
     if (document.getElementById("operation").value === "Додати фільм") {
         ResetContainerForForms();
@@ -495,3 +608,21 @@ function ChangedSelection() {
 }
 
 ChangedSelection();
+
+/*function ChangedSelection() {
+    const operations = {
+        "Додати фільм": AddNewFilm,
+        "Видалити фільм": DeleteFilm,
+        "Додати сеанс": AddNewSession,
+        "Видалити сеанс": DeleteSession,
+        "Додати жанр": AddNewGenre,
+        "Видалити жанр": DeleteGenre
+    };
+
+    const operation = document.getElementById("operation").value;
+
+    if (operations[operation]) {
+        ResetContainerForForms();
+        operations[operation](); 
+    }
+}*/
